@@ -384,8 +384,6 @@
           url: url + "/predict_crime",
           data: {precinct: selected_precinct},
           success: function(data) {
-              console.log(data);
-              console.log($("#prediction"));
               $("#prediction").show()
               $("#prediction").text("Most likely crime of precinct number " + selected_precinct + ": " + data['most_likely_offense'])
           },
