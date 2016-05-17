@@ -52,6 +52,10 @@ def GET_page():
     headers = {'Content-Type': 'text/html'}
     return make_response(render_template('index.html'), 200, headers)
 
+@app.route('/machine_learning')
+def GET_machine_learning_page():
+    headers = {'Content-Type': 'text/html'}
+    return make_response(render_template('machine_learning.html'), 200, headers)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 2400))
