@@ -11,7 +11,7 @@ requests-mock==0.6.0
 six==1.9.0
 sodapy==1.2.0
 Werkzeug==0.11.9
-numpy==1.9.2
-scipy==0.15.1
+numpy==1.9.1
+scipy==0.14.0
 sklearn==0.0
 scikit-learn==0.17.1
