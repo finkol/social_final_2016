@@ -77,7 +77,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Visualization</a>
+                    <a href="/">Visualization</a>
                 </li>
                 <li>
                     <a href="#">Machine Learning</a>
@@ -112,6 +112,10 @@
     </div>
     <div id="map1"></div>
 
+
+    <h2>Predict the most likely crime by each precinct</h2>
+    <h4>Click on the precinct to get the most likely crime</h4>
+    <div id="prediction" style="display:none">Most likely crime of precinct number : X</div>
     <div id="map2"></div>
 
 
@@ -313,10 +317,12 @@
 </script>
 
 <script type="text/javascript">
+    var url = (window.location.origin).replace(/\/$/, "")
     //Width and height
     var width2 = 600;
     var height2 = 500;
     var dataset2;
+    var selected_precinct;
     var colors2 = ["#E74C3C", "#9B59B6", "#3498DB", "#27AE60", "#2C3E50", "#F39C12"];
 
     var svg2 = d3.select("#map2")
@@ -358,20 +364,35 @@
                     .enter()
                     .append("path")
                     .attr("d", path2)
+                    .attr("class", "clickable-precinct")
+                    .attr("data-precinct", function (d) {
+                        return d.properties.Precinct;
+                    })
                     .style("fill", "#D7DBDD")
                     .style("stroke-width", "1")
                     .style("stroke", "black")
-                    .text(function (d) {
-                        return d.Precinct});
-            svg2.selectAll(".place-label")
-                .data(json.features)
-                .enter()
-                    .append("text")
-                .attr("class", "place-label")
-                //.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
-                .attr("dy", ".35em")
-                .text(function(d) { return d.Precinct; });
-                    });
+        });
+
+    //On click, update with new data
+    $(document).on("click", ".clickable-precinct", function () {
+        $(".clickable-precinct").css("fill", "#D7DBDD")
+        $(this).removeClass("btn-default").addClass("btn-success");
+        selected_precinct = $(this).data("precinct");
+        console.log(selected_precinct)
+        $(this).css("fill", "red")
+        $.ajax({
+          url: url + "/predict_crime",
+          data: {precinct: selected_precinct},
+          success: function(data) {
+              console.log(data);
+              console.log($("#prediction"));
+              $("#prediction").show()
+              $("#prediction").text("Most likely crime of precinct number " + selected_precinct + ": " + data['most_likely_offense'])
+          },
+          dataType: "json"
+        });
+    });
+
 </script>
 
 </body>
