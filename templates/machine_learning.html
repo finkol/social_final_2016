@@ -239,12 +239,9 @@
                     .style("opacity", 0.65);
         })
 
-         d3.csv("../static/csv_files/burglary_CentroidKMeans2.csv?id=2", function(data) {
-                console.log(data)
+         d3.csv("../static/csv_files/"+offense+"_CentroidKMeans"+k+".csv", function(data) {
                 svg.selectAll(".centroid")
                     .data(data)
-                    .enter()
-                    .append("circle")
                     .attr("cx", function(d) {
                         return projection([d.lon, d.lat])[0];
                     })
