@@ -13,5 +13,4 @@ sodapy==1.2.0
 Werkzeug==0.11.9
 numpy==1.9.1
 scipy==0.14.0
-sklearn==0.0
-scikit-learn==0.17.1
+scikit-learn==0.16.1
