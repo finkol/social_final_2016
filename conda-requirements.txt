@@ -1,6 +1,8 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: win-64
+anaconda-client=1.4.0=py27_0
+clyent=1.2.2=py27_0
 flask=0.10.1=py27_1
 itsdangerous=0.24=py27_0
 jinja2=2.8=py27_0
@@ -9,7 +11,12 @@ mkl=11.3.3=1
 numpy=1.11.0=py27_1
 pip=8.1.1=py27_1
 python=2.7.11=4
+python-dateutil=2.5.3=py27_0
+pytz=2016.4=py27_0
+pyyaml=3.11=py27_3
+requests=2.10.0=py27_0
 scipy=0.17.1=np111py27_0
 setuptools=20.7.0=py27_0
+six=1.10.0=py27_0
 werkzeug=0.11.9=py27_0
 wheel=0.29.0=py27_0
